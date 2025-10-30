@@ -21,12 +21,10 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
 
-
     def add_product(self, product: Product) -> None:
-            """Метод экземпляра добавляет товар в категорию"""
-            self.__products.append(product)
-            Category.product_count += 1
-
+        """Метод экземпляра добавляет товар в категорию"""
+        self.__products.append(product)
+        Category.product_count += 1
 
     @property
     def products(self) -> str:

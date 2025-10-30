@@ -16,26 +16,23 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-
     @classmethod
     def new_product(cls, product_data: dict) -> Any:
-        """Класс-метод принимает параметры товара в словаре и возвращает созданный объект класса """
-        name = product_data.get('name')
-        description = product_data.get('description', '')
-        price = product_data.get('price', 0.0)
-        quantity = product_data.get('quantity', 0)
+        """Класс-метод принимает параметры товара в словаре и возвращает созданный объект класса"""
+        name = product_data.get("name")
+        description = product_data.get("description", "")
+        price = product_data.get("price", 0.0)
+        quantity = product_data.get("quantity", 0)
 
         if not name:
             raise ValueError("Название товара является обязательным параметром")
 
         return cls(name, description, price, quantity)
 
-
     @property
     def price(self) -> float:
         """Геттер для получения цены"""
         return self.__price
-
 
     @price.setter
     def price(self, new_price: float) -> None:
