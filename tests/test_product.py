@@ -85,3 +85,52 @@ def test_price_setter_zero(capsys: CaptureFixture[str]) -> None:
     captured = capsys.readouterr()
     assert "Цена не должна быть нулевая или отрицательная" in captured.out
     assert product.price == 1000.0
+
+
+def test_product_addition() -> None:
+    """Тест сложения двух товаров"""
+    product1 = Product("Товар1", "Описание1", 100.0, 10)
+    product2 = Product("Товар2", "Описание2", 200.0, 2)
+
+    result = product1 + product2
+    expected = 100 * 10 + 200 * 2
+
+    assert result == expected
+    assert isinstance(result, float)
+
+
+def test_product_addition_with_different_types() -> None:
+    """Тест проверки на несовместимость с другими типами данных"""
+
+    product = Product("Товар", "Описание", 100.0, 5)
+
+    with pytest.raises(TypeError, match="Можно складывать только объекты класса Product"):
+        product + 100  # type: ignore[operator]  # Игнорируем только оператор
+
+    with pytest.raises(TypeError):
+        product + "строка"  # type: ignore[operator]  # Игнорируем только оператор
+
+
+# Тесты для строкового представления
+def test_product_str_representation() -> None:
+    """Тест строкового представления продукта"""
+    # Arrange
+    product = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+
+    # Act
+    result = str(product)
+
+    # Assert
+    expected = "Iphone 15, 210000 руб. Остаток: 8 шт."
+    assert result == expected
+
+
+def test_product_str_price_formatting() -> None:
+    """Тест что цена форматируется как целое число"""
+
+    product = Product("Тестовый", "Товар", 12345.67, 3)
+
+    result = str(product)
+
+    assert "12345 руб." in result
+    assert "12345.67" not in result

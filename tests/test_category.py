@@ -39,13 +39,15 @@ def test_products_property_full_category() -> None:
     product1 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
-    category = Category("Смартфоны", "Смартфоны, как средство не только коммуникации, "
-                        "но и получение дополнительных функций для удобства жизни",
-                        [product1, product2, product3])
+    category = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, " "но и получение дополнительных функций для удобства жизни",
+        [product1, product2, product3],
+    )
 
     result = category.products
 
-    lines = result.split('\n')
+    lines = result.split("\n")
     assert len(lines) == 3
     assert "Samsung Galaxy C23 Ultra, 180000 руб. Остаток: 5 шт." in lines
     assert "Iphone 15, 210000 руб. Остаток: 8 шт." in lines
@@ -88,3 +90,56 @@ def test_products_property_after_adding() -> None:
     assert "Мышь" in result
     assert "5000" in result
     assert "Остаток: 15 шт." in result
+
+
+# Тесты для строкового представления
+def test_category_str_empty() -> None:
+    """Тест строкового представления пустой категории"""
+
+    category = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, " "но и получение дополнительных функций для удобства жизни",
+        [],
+    )
+
+    result = str(category)
+
+    expected = "Смартфоны, количество продуктов: 0 шт."
+    assert result == expected
+
+
+def test_category_str_multiple_products() -> None:
+    """Тест строкового представления категории с несколькими товарами"""
+
+    products = [
+        Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5),
+        Product("Iphone 15", "512GB, Gray space", 210000.0, 8),
+        Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14),
+    ]
+    category = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, " "но и получение дополнительных функций для удобства жизни",
+        products,
+    )
+
+    result = str(category)
+
+    expected = "Смартфоны, количество продуктов: 27 шт."
+    assert result == expected
+
+
+def test_category_str_after_adding_product() -> None:
+    """Тест что строковое представление обновляется после добавления товара"""
+
+    category = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, " "но и получение дополнительных функций для удобства жизни",
+        [],
+    )
+    product = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+
+    category.add_product(product)
+    result = str(category)
+
+    expected = "Смартфоны, количество продуктов: 8 шт."
+    assert result == expected
