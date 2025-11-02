@@ -16,6 +16,22 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self) -> str:
+        """Строковое представление в следующем виде: Название продукта, 80 руб. Остаток: 15 шт."""
+
+        return f"{self.name}, {int(self.__price)} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other: "Product") -> float:
+        """
+        Магический метод для сложения продуктов.
+        Возвращает общую стоимость всех товаров на складе.
+        """
+        if not isinstance(other, Product):
+            raise TypeError("Можно складывать только объекты класса Product")
+
+        # Общая стоимость = (цена × количество) + (цена × количество)
+        return (self.price * self.quantity) + (other.price * other.quantity)
+
     @classmethod
     def new_product(cls, product_data: dict) -> Any:
         """Класс-метод принимает параметры товара в словаре и возвращает созданный объект класса"""
