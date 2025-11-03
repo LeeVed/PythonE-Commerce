@@ -27,9 +27,9 @@ class Product:
         Возвращает общую стоимость всех товаров на складе.
         """
         if not isinstance(other, Product):
-            raise TypeError("Можно складывать только объекты класса Product")
+            raise TypeError("Можно складывать только объекты класса Product или его наследников")
 
-        # Общая стоимость = (цена × количество) + (цена × количество)
+            # Общая стоимость = (цена × количество) + (цена × количество)
         return (self.price * self.quantity) + (other.price * other.quantity)
 
     @classmethod
