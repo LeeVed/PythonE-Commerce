@@ -105,10 +105,10 @@ def test_product_addition_with_different_types() -> None:
     product = Product("Товар", "Описание", 100.0, 5)
 
     with pytest.raises(TypeError, match="Можно складывать только объекты класса Product"):
-        product + 100  # type: ignore[operator]  # Игнорируем только оператор
+        product + 100  # type: ignore[operator]
 
     with pytest.raises(TypeError):
-        product + "строка"  # type: ignore[operator]  # Игнорируем только оператор
+        product + "строка"  # type: ignore[operator]
 
 
 # Тесты для строкового представления
