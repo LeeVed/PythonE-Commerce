@@ -47,7 +47,7 @@ def test_products_property_full_category() -> None:
 
     result = category.products
 
-    lines = result.split("\n")
+    lines = result.split("\n")  # type: ignore
     assert len(lines) == 3
     assert "Samsung Galaxy C23 Ultra, 180000 руб. Остаток: 5 шт." in lines
     assert "Iphone 15, 210000 руб. Остаток: 8 шт." in lines
