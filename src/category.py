@@ -16,7 +16,30 @@ class Category:
         """Метод для инициализации экземпляра класса. Задаем значения атрибутам экземпляра."""
         self.name = name
         self.description = description
-        self.products = products
+        self.__products = products
         # активируем подсчет атрибутов класса:категорий и продуктов
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
+
+    def __str__(self) -> str:
+        """Строковое представление категории: Название категории, количество продуктов: 200 шт."""
+
+        total_quantity = sum(product.quantity for product in self.__products)
+        return f"{self.name}, количество продуктов: {total_quantity} шт."
+
+    def add_product(self, product: Product) -> None:
+        """Метод экземпляра добавляет товар в категорию"""
+        if not isinstance(product, Product):
+            raise TypeError("Можно добавлять только объекты класса Product или его наследников")
+
+        self.__products.append(product)
+        Category.product_count += 1
+
+    @property
+    def products(self) -> str:
+        """Геттер для вывода списка товаров в строке нужного формата"""
+        if not self.__products:
+            return "В этой категории пока нет товаров"
+
+        # Используем __str__ каждого продукта
+        return "\n".join(str(product) for product in self.__products)
