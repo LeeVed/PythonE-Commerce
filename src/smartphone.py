@@ -24,7 +24,7 @@ class Smartphone(Product):
         Магический метод для сложения одного типа продуктов(подкласса)
 
         """
-        if type(other) is not type(self):
+        if not isinstance(other, Smartphone):
             raise TypeError("Можно складывать только объекты класса Smartphone")
 
         # Используем родительскую логику для расчета стоимости

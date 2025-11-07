@@ -22,8 +22,8 @@ class LawnGrass(Product):
         Магический метод для сложения одного типа продуктов(подкласса)
 
         """
-        if type(other) is not type(self):
-            raise TypeError("Можно складывать только объекты класса Smartphone")
+        if not isinstance(other, LawnGrass):
+            raise TypeError("Можно складывать только объекты класса LawnGrass")
 
         # Используем родительскую логику для расчета стоимости
         return super().__add__(other)
