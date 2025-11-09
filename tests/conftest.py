@@ -40,3 +40,8 @@ def smartphone1() -> Smartphone:
 @pytest.fixture
 def smartphone2() -> Smartphone:
     return Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space")
+
+
+@pytest.fixture
+def category_empty() -> Category:
+    return Category("Пустая категория", "Категория без продуктов", [])
