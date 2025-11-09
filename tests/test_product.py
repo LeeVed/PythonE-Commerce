@@ -134,3 +134,11 @@ def test_product_str_price_formatting() -> None:
 
     assert "12345 руб." in result
     assert "12345.67" not in result
+
+
+def test_zero_quantity_value_error() -> None:
+    """Тест на проверку работы ValueError"""
+
+    with pytest.raises(ValueError) as e:
+        Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+        assert str(e.value) == "Товар с нулевым количеством не может быть добавлен"

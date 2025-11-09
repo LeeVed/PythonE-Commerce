@@ -43,3 +43,10 @@ class Category:
 
         # Используем __str__ каждого продукта
         return "\n".join(str(product) for product in self.__products)
+
+    def middle_price(self) -> float:
+        """Метод, который подсчитывает средний ценник всех товаров"""
+        try:
+            return sum(product.price for product in self.__products) / len(self.__products)
+        except ZeroDivisionError:
+            return 0

@@ -22,4 +22,4 @@ def test_smartphone_add_successful(smartphone1: Smartphone, smartphone2: Smartph
 
 def test_smartphone_add_error(smartphone1: Smartphone, smartphone2: Smartphone) -> None:
     with pytest.raises(TypeError):
-        result = smartphone1 + 2  # type: ignore
+        smartphone1 + 2  # type: ignore

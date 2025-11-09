@@ -143,3 +143,10 @@ def test_category_str_after_adding_product() -> None:
 
     expected = "Смартфоны, количество продуктов: 8 шт."
     assert result == expected
+
+
+def test_middle_price(category_one: Category, category_empty: Category) -> None:
+    """Тест корректности вычисления средней цены и категории без продуктов"""
+
+    assert category_one.middle_price() == 180000.0
+    assert category_empty.middle_price() == 0

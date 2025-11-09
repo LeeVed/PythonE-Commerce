@@ -22,4 +22,4 @@ def test_lawngrass_add_successful(lawngrass1: LawnGrass, lawngrass2: LawnGrass) 
 def test_lawngrass_add_error(lawngrass1: LawnGrass, lawngrass2: LawnGrass) -> None:
     """Тест на проверку ошибки при сложении разных типов объектов"""
     with pytest.raises(TypeError):
-        result = lawngrass1 + 2  # type: ignore
+        lawngrass1 + 2  # type: ignore
